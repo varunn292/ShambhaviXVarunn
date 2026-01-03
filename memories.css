@@ -1,0 +1,170 @@
+/* ================= RESET ================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  min-height: 100%;
+}
+
+/* ================= GLOBAL BACKGROUND ================= */
+body {
+  color: white;
+  font-family: 'Poppins', sans-serif;
+  overflow-x: hidden;
+
+  /* ONE cinematic background – no layers */
+  background:
+    radial-gradient(1200px 800px at 30% 20%, rgba(255,0,0,0.35), transparent 60%),
+    radial-gradient(1000px 700px at 70% 80%, rgba(255,0,0,0.25), transparent 65%),
+    linear-gradient(to bottom, #000000 0%, #0a0000 50%, #000000 100%);
+  background-attachment: fixed;
+}
+
+/* ================= TITLE ================= */
+.title {
+  text-align: center;
+  font-size: 3rem;
+  color: red;
+  margin: 60px 0 80px;
+  text-shadow: 0 0 25px red;
+}
+
+/* ================= LAYOUT ================= */
+.timeline-container {
+  max-width: 1000px;
+  margin: auto;
+  display: flex;
+  gap: 40px;
+  padding: 0 20px 120px;
+}
+
+/* ================= LEFT RAIL ================= */
+.rail {
+  position: relative;
+  width: 80px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.track {
+  width: 6px;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    red,
+    red 10px,
+    transparent 10px,
+    transparent 20px
+  );
+  border-radius: 10px;
+  box-shadow: 0 0 20px red;
+}
+
+/* Train */
+.train {
+  position: absolute;
+  top: 0;
+  font-size: 32px;
+  filter: drop-shadow(0 0 12px red);
+}
+
+/* ================= EVENTS ================= */
+.events {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+}
+
+.event {
+  max-width: 620px;
+  padding: 30px 32px;
+  border-radius: 22px;
+  background: rgba(255, 0, 0, 0.08);
+  box-shadow: 0 0 35px rgba(255,0,0,0.18);
+  backdrop-filter: blur(4px);
+}
+
+.date {
+  display: block;
+  color: #ff6b6b;
+  font-size: 0.95rem;
+  margin-bottom: 6px;
+}
+
+.event h2 {
+  font-size: 1.45rem;
+  margin-bottom: 12px;
+}
+
+.event p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: 0.9;
+}
+
+/* Coming soon card */
+.coming-soon {
+  background: rgba(255,255,255,0.04);
+  border: 1px dashed rgba(255,255,255,0.25);
+}
+
+/* ================= NEXT BUTTON ================= */
+.next-btn {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  padding: 14px 30px;
+  font-size: 16px;
+  border-radius: 40px;
+  border: none;
+  background: linear-gradient(135deg, #ff1e1e, #b30000);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 30px rgba(255,0,0,0.7);
+  animation: pulseNext 2s infinite;
+  z-index: 999;
+}
+
+.next-btn:hover {
+  transform: scale(1.08);
+}
+
+@keyframes pulseNext {
+  0%   { box-shadow: 0 0 18px rgba(255,0,0,0.6); }
+  50%  { box-shadow: 0 0 40px rgba(255,0,0,0.9); }
+  100% { box-shadow: 0 0 18px rgba(255,0,0,0.6); }
+}
+
+/* ================= MOBILE ================= */
+@media (max-width: 700px) {
+  .title {
+    font-size: 2.2rem;
+    margin-bottom: 60px;
+  }
+
+  .timeline-container {
+    gap: 20px;
+  }
+
+  .rail {
+    width: 50px;
+  }
+
+  .event {
+    padding: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .next-btn {
+    right: 50%;
+    transform: translateX(50%);
+    bottom: 20px;
+  }
+}

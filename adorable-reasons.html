@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Final Stop ❤️</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="global.css" />
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow: hidden;
+      color: white;
+      background:
+        radial-gradient(1200px 800px at 30% 20%, rgba(255,0,0,0.35), transparent 60%),
+        radial-gradient(1000px 700px at 70% 80%, rgba(255,0,0,0.25), transparent 65%),
+        linear-gradient(to bottom, #000000 0%, #0a0000 50%, #000000 100%);
+    }
+
+    /* ================= FLOATING PHOTOS ================= */
+    .photo {
+      position: absolute;
+      width: 120px;
+      height: 160px;
+      border-radius: 18px;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+
+      box-shadow:
+        0 0 25px rgba(255,0,0,0.7),
+        0 0 60px rgba(255,0,0,0.4);
+
+      opacity: 0.9;
+      animation-duration: 22s;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    .photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ===== Directions ===== */
+    @keyframes leftToRight {
+      0% { transform: translateX(-30vw); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateX(130vw); opacity: 0; }
+    }
+
+    @keyframes rightToLeft {
+      0% { transform: translateX(130vw); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateX(-30vw); opacity: 0; }
+    }
+
+    @keyframes topToBottom {
+      0% { transform: translateY(-30vh); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateY(130vh); opacity: 0; }
+    }
+
+    @keyframes bottomToTop {
+      0% { transform: translateY(130vh); opacity: 0; }
+      15% { opacity: 1; }
+      100% { transform: translateY(-30vh); opacity: 0; }
+    }
+
+    /* ================= CENTER CARD ================= */
+    .container {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+      z-index: 5; /* PROTECT CENTER */
+    }
+
+    .card {
+      max-width: 720px;
+      padding: 55px 45px;
+      border-radius: 30px;
+      background: rgba(255,0,0,0.08);
+      box-shadow: 0 0 60px rgba(255,0,0,0.45);
+      backdrop-filter: blur(6px);
+      text-align: center;
+      animation: fadeUp 1.6s ease;
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      color: #ff2d2d;
+      text-shadow: 0 0 25px rgba(255,0,0,0.9);
+      margin-bottom: 12px;
+      animation: glowText 2.5s ease-in-out infinite;
+    }
+
+    @keyframes glowText {
+      0% { text-shadow: 0 0 15px red; }
+      50% { text-shadow: 0 0 40px red; }
+      100% { text-shadow: 0 0 15px red; }
+    }
+
+    h2 {
+      font-size: 1.6rem;
+      color: #ff8080;
+      margin-bottom: 25px;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.85;
+      margin-bottom: 18px;
+      opacity: 0.95;
+    }
+
+    .highlight {
+      color: #ff6b6b;
+      font-weight: 600;
+    }
+
+    .final-line {
+      margin-top: 30px;
+      font-size: 1.3rem;
+      color: #ff9a9a;
+      text-shadow: 0 0 20px rgba(255,0,0,0.6);
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2.2rem; }
+      h2 { font-size: 1.3rem; }
+      .photo { width: 90px; height: 120px; }
+      .card { padding: 40px 25px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ================= FLOATING IMAGES SCRIPT ================= -->
+<script>
+  const images = [
+    "img1.jpg","img2.jpg","img3.jpg","img4.jpg","img5.jpg",
+    "img6.jpg","img7.jpg","img8.jpg","img9.jpg","img10.jpg"
+  ];
+
+  const animations = [
+    "leftToRight",
+    "rightToLeft",
+    "topToBottom",
+    "bottomToTop"
+  ];
+
+  images.forEach((src, i) => {
+    const div = document.createElement("div");
+    div.className = "photo";
+
+    const anim = animations[i % animations.length];
+    div.style.animationName = anim;
+    div.style.animationDelay = `-${Math.random() * 20}s`;
+
+
+    // Keep images away from center
+    if (anim === "leftToRight" || anim === "rightToLeft") {
+      div.style.top = (i % 2 === 0)
+        ? Math.random() * 25 + "%"
+        : 65 + Math.random() * 20 + "%";
+    } else {
+      div.style.left = (i % 2 === 0)
+        ? Math.random() * 20 + "%"
+        : 70 + Math.random() * 20 + "%";
+    }
+
+    div.innerHTML = `<img src="${src}" />`;
+    document.body.appendChild(div);
+  });
+</script>
+
+<!-- ================= CENTER MESSAGE ================= -->
+<div class="container">
+  <div class="card">
+    <h1>Happy Anniversary ❤️</h1>
+    <h2>Shambhavi ✨</h2>
+
+    <p>
+      If you are reading this, it means you reached the end.
+      You didn’t rush. You didn’t skip.
+    </p>
+
+    <p>
+      This wasn’t just a website.
+      It was my way of keeping us close,
+      even when distance tried its best.
+    </p>
+
+    <p class="highlight">
+      Every memory here is real.
+      Every feeling is honest.
+      And every heartbeat says the same thing.
+    </p>
+
+    <p class="final-line">
+      The train stops here 🚆  
+      But my choice…  
+      will always be you 💖
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

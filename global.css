@@ -1,0 +1,96 @@
+/* ================= GLOBAL ANIMATIONS ================= */
+
+
+.fade-in {
+  animation: fadeIn 1.2s ease forwards;
+}
+
+.fade-up {
+  animation: fadeUp 1.2s ease forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.8s ease forwards;
+}
+
+.glow {
+  animation: glowPulse 2.5s infinite alternate;
+}
+
+/* Page entry */
+.page-enter {
+  animation: pageEnter 1s ease forwards;
+}
+
+/* Floating animation */
+.float {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* Heart particles */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  color: red;
+  opacity: 0.7;
+  pointer-events: none;
+  animation: heartFloat linear forwards;
+}
+
+/* ================= KEYFRAMES ================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  from { text-shadow: 0 0 12px red; }
+  to { text-shadow: 0 0 30px red; }
+}
+
+@keyframes pageEnter {
+  from {
+    opacity: 0;
+    transform: scale(1.02);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes heartFloat {
+  to {
+    transform: translateY(-120vh) scale(1.5);
+    opacity: 0;
+  }
+}

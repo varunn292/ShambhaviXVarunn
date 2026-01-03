@@ -1,0 +1,161 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ===== ANIMATED BACKGROUND ===== */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,0,0,0.18), transparent 40%),
+    radial-gradient(circle at 80% 30%, rgba(255,0,0,0.12), transparent 45%),
+    radial-gradient(circle at 50% 80%, rgba(255,0,0,0.15), transparent 50%);
+  animation: bgPulse 8s ease-in-out infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes bgPulse {
+  from { filter: blur(0px); }
+  to { filter: blur(6px); }
+}
+
+/* ===== FLOATING HEARTS ===== */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 18px;
+  color: red;
+  opacity: 0.7;
+  animation: floatUp linear forwards;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh) scale(1.4);
+    opacity: 0;
+  }
+}
+
+/* ===== LAYOUT ===== */
+.container {
+  min-height: 100vh;
+  max-width: 900px;
+  margin: auto;
+  padding: 70px 20px 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+/* ===== TITLE ===== */
+.title {
+  margin-bottom: 45px;
+  font-size: 3rem;
+  color: red;
+  letter-spacing: 1px;
+  text-shadow: 0 0 20px red;
+  animation: titleGlow 3s ease-in-out infinite alternate;
+}
+
+@keyframes titleGlow {
+  from { text-shadow: 0 0 15px red; }
+  to { text-shadow: 0 0 35px red; }
+}
+
+.title::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 2px;
+  background: red;
+  margin: 15px auto 0;
+  box-shadow: 0 0 10px red;
+}
+
+/* ===== TEXT ===== */
+.text-block {
+  width: 100%;
+  max-width: 620px;
+}
+
+.line {
+  opacity: 0;
+  font-size: 1.2rem;
+  line-height: 1.9;
+  margin-bottom: 22px;
+  animation: fadeUp 1.4s ease forwards;
+}
+
+.line span {
+  color: red;
+  text-shadow: 0 0 8px red;
+}
+
+/* ===== AFFIRMATION ===== */
+.affirmation p {
+  color: #ff4d4d;
+  font-weight: 600;
+  font-size: 1.25rem;
+  margin: 8px 0;
+}
+
+/* ===== BUTTON ===== */
+button {
+  margin-top: 45px;
+  padding: 14px 40px;
+  font-size: 18px;
+  border-radius: 40px;
+  border: none;
+  background: red;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 20px red;
+  animation: pulse 2s infinite;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+button:hover {
+  transform: scale(1.08);
+  box-shadow: 0 0 40px red;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from {
+    transform: translateY(25px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 15px red; }
+  50% { box-shadow: 0 0 35px red; }
+  100% { box-shadow: 0 0 15px red; }
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 600px) {
+  .title { font-size: 2.2rem; }
+  .line { font-size: 1.05rem; }
+}

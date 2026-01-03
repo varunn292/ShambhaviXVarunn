@@ -1,0 +1,123 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: black;
+  color: white;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+/* Background */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 30% 20%, rgba(255,0,0,0.25), transparent 45%),
+    radial-gradient(circle at 70% 80%, rgba(255,0,0,0.2), transparent 50%);
+  animation: pulseBg 6s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes pulseBg {
+  from { filter: blur(0); }
+  to { filter: blur(6px); }
+}
+
+.container {
+  height: 100vh;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+h1 {
+  font-size: 2.4rem;
+  margin-bottom: 15px;
+}
+
+h1 span {
+  color: red;
+  text-shadow: 0 0 20px red;
+}
+
+.gif {
+  width: 220px;
+  border-radius: 20px;
+  box-shadow: 0 0 30px red;
+  margin-bottom: 20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Hint message */
+.hint {
+  opacity: 0;
+  margin-bottom: 15px;
+  font-size: 1.05rem;
+  color: #ff4d4d;
+  animation: none;
+}
+
+.hint.show {
+  animation: pop 0.6s ease forwards;
+}
+
+@keyframes pop {
+  0% { transform: scale(0.5); opacity: 0; }
+  80% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Buttons */
+.buttons {
+  position: relative;
+  width: 260px;
+  height: 80px;
+}
+
+button {
+  position: absolute;
+  padding: 12px 26px;
+  font-size: 18px;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#yesBtn {
+  left: 0;
+  background: red;
+  color: white;
+  box-shadow: 0 0 20px red;
+}
+
+#yesBtn.shake {
+  animation: shake 0.4s;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+#noBtn {
+  right: 0;
+  background: white;
+  color: black;
+}
